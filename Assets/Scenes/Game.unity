@@ -911,10 +911,11 @@ MonoBehaviour:
   - normalColor: {r: 0.4199893, g: 0.735849, b: 0.45101127, a: 0.76862746}
     highlightColor: {r: 0, g: 1, b: 0.07963061, a: 1}
   gameFieldPanelTransform: {fileID: 2036545072}
-  redButton: {fileID: 21300000, guid: d8ec62b6a33c4134e9b6818fd571a810, type: 3}
-  blueButton: {fileID: 21300000, guid: 96ba0f4dcadee0f4eafe1b8df2a5bf93, type: 3}
-  yellowButton: {fileID: 21300000, guid: b1fab497ae5464041a811857a7659fbc, type: 3}
-  greenButton: {fileID: 21300000, guid: 11e4a679b4cf30240b51fec011ef5fde, type: 3}
+  redButton: {fileID: 1720272159}
+  blueButton: {fileID: 609187240}
+  yellowButton: {fileID: 999510446}
+  greenButton: {fileID: 2153475}
+  playerBleeps: 
 --- !u!4 &1644658364
 Transform:
   m_ObjectHideFlags: 0
