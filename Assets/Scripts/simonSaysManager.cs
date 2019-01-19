@@ -14,10 +14,10 @@ public class simonSaysManager : MonoBehaviour
     public Transform gameFieldPanelTransform;
 
 	
-	public Sprite redButton;
-	public Sprite blueButton;
-	public Sprite yellowButton;
-	public Sprite greenButton;
+	public GameObject redButton;
+	public GameObject blueButton;
+	public GameObject yellowButton;
+	public GameObject greenButton;
 	
 	
     List<GameObject> gameButtons;
@@ -25,10 +25,9 @@ public class simonSaysManager : MonoBehaviour
     int bleepCount = 3;
 
     List<int> bleeps;
-    List<int> playerBleeps;
+    public List<int> playerBleeps = new List<int>();
 
     bool inputEnabled = false;
-
 	
 	
 	
@@ -36,27 +35,18 @@ public class simonSaysManager : MonoBehaviour
     void Start() {
         gameButtons = new List<GameObject>();
 	
-        CreateGameButton(0, new Vector3(5, -70), redButton);
-        CreateGameButton(1, new Vector3(-10, -50), blueButton);
-        CreateGameButton(2, new Vector3(30, -55), yellowButton);
-        CreateGameButton(3, new Vector3(4, -35), greenButton);
+        ButtonSetter(0, redButton);
+		ButtonSetter(1, blueButton);
+		ButtonSetter(2, yellowButton);
+		ButtonSetter(3, greenButton);
 		
     }
 
 	
 	// actually create the buttons 
-	void CreateGameButton(int index, Vector3 position, Sprite buttonColor) {
-	GameObject gameButton = Instantiate(gameButtonPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-
-	gameButton.transform.SetParent(gameFieldPanelTransform);
-	gameButton.transform.localPosition = position;
-	gameButton.transform.localScale = new Vector3(8.0f, 30.0f, 2.0f);
-	
-	
-	gameButton.GetComponent<Image>().sprite = buttonColor;
-	gameButton.GetComponent<Image>().color = buttonSettings[index].normalColor;
-
-	gameButtons.Add(gameButton);
+	void ButtonSetter(int index, GameObject gameButton) {
+		gameButton.GetComponent<Image>().color = buttonSettings[index].normalColor;
+		gameButtons.Add(gameButton);
     }
 	
 
