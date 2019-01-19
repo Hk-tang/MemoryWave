@@ -33,10 +33,10 @@ public class simonSaysManager : MonoBehaviour
     void Start() {
         gameButtons = new List<GameObject>();
 	
-        CreateGameButton(0, new Vector3(3, -35), redButton);
-        CreateGameButton(1, new Vector3(-10, -20), blueButton);
-        CreateGameButton(2, new Vector3(15, -25), yellowButton);
-        CreateGameButton(3, new Vector3(4, -10), greenButton);
+        CreateGameButton(0, new Vector3(5, -70), redButton);
+        CreateGameButton(1, new Vector3(-10, -50), blueButton);
+        CreateGameButton(2, new Vector3(30, -55), yellowButton);
+        CreateGameButton(3, new Vector3(4, -35), greenButton);
 		
     }
 
@@ -52,9 +52,6 @@ public class simonSaysManager : MonoBehaviour
 	
 	gameButton.GetComponent<Image>().sprite = buttonColor;
 	gameButton.GetComponent<Image>().color = buttonSettings[index].normalColor;
-	gameButton.GetComponent<Button>().onClick.AddListener(() => {
-		// player has clicked the button
-	});
 
 	gameButtons.Add(gameButton);
     }
@@ -105,9 +102,6 @@ public class simonSaysManager : MonoBehaviour
 	
 	// Press the given button. 
 	void MemoryInput(int index) {
-		if(!inputEnabled) {
-			return;
-		}
 		
 		Bleep(index);
 		playerBleeps.Add(index);
@@ -121,6 +115,24 @@ public class simonSaysManager : MonoBehaviour
 			Success();
 		}
 	}
+	
+	void Update() {
+
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
+			MemoryInput(0);
+		}
+		else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+			MemoryInput(1);
+		}
+		else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+			MemoryInput(3);
+		}
+		else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+			MemoryInput(2);
+		}
+
+	}
+	
 	
 	
 	void Success() {
