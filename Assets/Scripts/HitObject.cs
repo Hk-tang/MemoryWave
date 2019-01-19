@@ -1,0 +1,147 @@
+﻿
+using System;
+
+public class HitObject
+{
+    private int x;
+    private int y;
+    private int offset;
+
+    private bool isNote; //true for note, false for simon says
+    private bool isSimonSays;
+    private bool isMine;
+    private bool flashRed;
+    private bool flashGreen;
+    private bool flashBlue;
+    private bool flashYellow;
+    private bool isHold;
+    private bool flashBlack;
+    
+
+    public HitObject()
+    {
+
+    }
+
+    /************************
+     * getters
+     ***********************/
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
+    public int getOffset()
+    {
+        return offset;
+    }
+
+    public bool IsNote()
+    {
+        return isNote;
+    }
+
+    public bool IsSimonSays()
+    {
+        return !isNote;
+    }
+
+    public bool IsMine()
+    {
+        return isNote;
+    }
+
+    public bool isFlashRed()
+    {
+        return flashRed;
+    }
+
+    public bool isFlashGreen()
+    {
+        return flashGreen;
+    }
+
+    public bool isFlashYellow()
+    {
+        return flashYellow;
+    }
+
+    public bool isFlashBlue()
+    {
+        return flashBlue;
+    }
+
+    public bool IsHold()
+    {
+        return isHold;
+    }
+
+    public bool IsflashBlack()
+    {
+        return flashBlack;
+    }
+
+    /************************
+     * setters
+     ***********************/
+    
+
+    public void setX(string input)
+    {
+        x = Convert.ToInt32(input);
+    }
+
+    public void setY(string input)
+    {
+        y = Convert.ToInt32(input);
+    }
+
+    public void setOffset(string input)
+    {
+        offset = Convert.ToInt32(input);
+    }
+
+    
+
+    private bool readBit(int num, int index)
+    {
+        return (num & (1 << index)) != 0;
+    }
+
+    public void setIsNote(string input)
+    {
+        isNote = readBit(Convert.ToInt32(input), 0);
+    }
+
+    public void setIsMine(string input)
+    {
+        isMine = readBit(Convert.ToInt32(input), 1);
+    }
+
+    public void setColour(string input)
+    {
+        int num = Convert.ToInt32(input);
+        flashRed = readBit(num, 2);
+        flashBlue = readBit(num, 3);
+        flashYellow = readBit(num, 4);
+        flashGreen = readBit(num, 5);
+    }
+
+    public void setFlashBlack(string input)
+    {
+        flashBlack = readBit(Convert.ToInt32(input), 6);
+    }
+
+    public void setIsHold(string input)
+    {
+        flashBlack = readBit(Convert.ToInt32(input), 6);
+    }
+
+
+}
