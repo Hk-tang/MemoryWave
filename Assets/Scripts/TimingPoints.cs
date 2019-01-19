@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 public class TimingPoints
 {
     private int offset;
