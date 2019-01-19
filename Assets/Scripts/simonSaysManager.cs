@@ -29,6 +29,9 @@ public class simonSaysManager : MonoBehaviour
 
     bool inputEnabled = false;
 
+	
+	
+	
 	// Calls to init button objects  
     void Start() {
         gameButtons = new List<GameObject>();
@@ -59,7 +62,7 @@ public class simonSaysManager : MonoBehaviour
 
 	
 	// Play the audio upon button press
-	void PlayAudio(int index) {
+	public void PlayAudio(int index) {
 	float length = 0.5f;
 	float frequency = 0.001f * ((float)index + 1f);
 
@@ -77,7 +80,7 @@ public class simonSaysManager : MonoBehaviour
 	
 	
 	// Call to show a BLEEP. 
-	void Bleep (int index) {
+	public void Bleep (int index) {
 		LeanTween.value(gameButtons[index], buttonSettings[index].normalColor, buttonSettings[index].highlightColor, 0.25f).setOnUpdate((Color color) => {
 			gameButtons[index].GetComponent<Image>().color = color;
 		});
@@ -93,7 +96,7 @@ public class simonSaysManager : MonoBehaviour
 	}
 	
 	// Store the given color into the list of bleeps to be pressed. 
-	void StoreBleep(int index) {
+	public void StoreBleep(int index) {
 		Bleep(index);
 		bleeps.Add(index);
 		bleepCount++;
@@ -101,7 +104,7 @@ public class simonSaysManager : MonoBehaviour
 	
 	
 	// Press the given button. 
-	void MemoryInput(int index) {
+	public void MemoryInput(int index) {
 		
 		Bleep(index);
 		playerBleeps.Add(index);
