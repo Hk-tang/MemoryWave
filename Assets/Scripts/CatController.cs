@@ -5,44 +5,70 @@ using UnityEngine.UI;
 
 public class CatController : MonoBehaviour
 {
-    public Image
-    public Sprite BothHandDownSprite;
-    public Sprite leftHandDownSprite;
-    public Sprite rightHandDownSprite;
-    public Sprite BothHandUpSprite;
+    private Image image;
+    public Sprite handsUpSprite;
+    public Sprite leftHandSprite;
+    public Sprite rightHandSprite;
+    public Sprite handsDownSprite;
 
-    public KeyCode leftHandDownKeyCode;
-    public KeyCode rightHandDownKeyCode;
-    public bool leftHandDown;
-    public bool rightHandDown;
+    public KeyCode leftHandKey;
+    public KeyCode rightHandKey;
+
+    private bool leftHandKeyPressed;
+    private bool rightHandKeyPressed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        image = GetComponent<Image>();
+        leftHandKeyPressed = false;
+        rightHandKeyPressed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(leftHandDownKeyCode))
+        if (Input.GetKeyDown(leftHandKey))
         {
-            leftHandDown = true;
+            image.sprite = leftHandSprite;
+            leftHandKeyPressed = true;
         }
 
-        if (Input.GetKeyUp(leftHandDownKeyCode))
+        if (Input.GetKeyUp(leftHandKey))
         {
-            leftHandDown = false;
+            leftHandKeyPressed = false;
+            if (rightHandKeyPressed)
+            {
+                image.sprite = rightHandSprite;
+            }
+            else
+            {
+                image.sprite = handsUpSprite;
+            }
         }
 
-        if (Input.GetKeyDown(rightHandDownKeyCode))
+        if (Input.GetKeyDown(rightHandKey))
         {
-            rightHandDown = true;
+            image.sprite = rightHandSprite;
+            rightHandKeyPressed = true;
         }
 
-        if (Input.GetKeyUp(rightHandDownKeyCode))
+        if (Input.GetKeyUp(rightHandKey))
         {
-            rightHandDown = false;
+            rightHandKeyPressed = false;
+            if (leftHandKeyPressed)
+            {
+                image.sprite = leftHandSprite;
+            }
+            else
+            {
+                image.sprite = handsUpSprite;
+            }
+        }
+
+        if (leftHandKeyPressed && rightHandKeyPressed)
+        {
+            image.sprite = handsDownSprite;
         }
     }
 }

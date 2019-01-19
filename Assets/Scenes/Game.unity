@@ -143,7 +143,7 @@ RectTransform:
   m_LocalScale: {x: 8, y: 29.999998, z: 1}
   m_Children: []
   m_Father: {fileID: 2036545072}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4875, y: 0.6716667}
   m_AnchorMax: {x: 0.4875, y: 0.6716667}
@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 175791125}
   - component: {fileID: 175791127}
   - component: {fileID: 175791126}
+  - component: {fileID: 175791128}
   m_Layer: 5
   m_Name: RightCat
   m_TagString: Untagged
@@ -342,7 +343,7 @@ RectTransform:
   m_LocalScale: {x: 2.4, y: 2.5, z: 1.0000049}
   m_Children: []
   m_Father: {fileID: 2036545072}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -386,6 +387,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175791124}
   m_CullTransparentMesh: 0
+--- !u!114 &175791128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175791124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45ad60a3839c414cbe0c3a6f960a5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handsUpSprite: {fileID: 21300000, guid: a3a7840cd2a6f564e9892d3d6b39446d, type: 3}
+  leftHandSprite: {fileID: 21300000, guid: bd54d9fc8065df1459abc3b9711bc9ae, type: 3}
+  rightHandSprite: {fileID: 21300000, guid: 3694b0cba5dfb404ab62a67469b35c29, type: 3}
+  handsDownSprite: {fileID: 21300000, guid: 4c1ff1a6a7f56ae4e87cf6da257a9c09, type: 3}
+  leftHandKey: 112
+  rightHandKey: 111
 --- !u!1 &609187240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1231,7 @@ GameObject:
   - component: {fileID: 2039113042}
   - component: {fileID: 2039113044}
   - component: {fileID: 2039113043}
+  - component: {fileID: 2039113045}
   m_Layer: 5
   m_Name: LeftCat
   m_TagString: Untagged
@@ -1231,7 +1251,7 @@ RectTransform:
   m_LocalScale: {x: -2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2036545072}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1275,3 +1295,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039113041}
   m_CullTransparentMesh: 0
+--- !u!114 &2039113045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039113041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45ad60a3839c414cbe0c3a6f960a5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handsUpSprite: {fileID: 21300000, guid: a3a7840cd2a6f564e9892d3d6b39446d, type: 3}
+  leftHandSprite: {fileID: 21300000, guid: bd54d9fc8065df1459abc3b9711bc9ae, type: 3}
+  rightHandSprite: {fileID: 21300000, guid: 3694b0cba5dfb404ab62a67469b35c29, type: 3}
+  handsDownSprite: {fileID: 21300000, guid: 4c1ff1a6a7f56ae4e87cf6da257a9c09, type: 3}
+  leftHandKey: 113
+  rightHandKey: 119
