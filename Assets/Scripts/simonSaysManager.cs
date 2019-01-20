@@ -29,8 +29,6 @@ public class simonSaysManager : MonoBehaviour
 
     bool inputEnabled = false;
 	
-	
-	
 	// Calls to init button objects  
     void Start() {
         gameButtons = new List<GameObject>();
