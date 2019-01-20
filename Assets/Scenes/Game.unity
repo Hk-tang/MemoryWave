@@ -262,13 +262,13 @@ MonoBehaviour:
   leftSpawnerSmall: {fileID: 1829412078}
   rightSpawnerBig: {fileID: 944634980}
   rightSpawnerSmall: {fileID: 223047898}
-  leftBigRing: {fileID: 516012304256311629, guid: 962dec1bbb7a1f94ab3c19b3cadb594c,
+  leftBigRing: {fileID: 165217949940896040, guid: 1b7797269fc00bd40b4dfd25e126e333,
     type: 3}
-  leftSmallRing: {fileID: 3170157532953636953, guid: ea1fbea7409fc33469205164011a40ef,
+  leftSmallRing: {fileID: 243374716502860906, guid: 31b996fd63bf8b047a915e63fb4fbbe5,
     type: 3}
-  rightBigRing: {fileID: 167071841473839551, guid: 4f1e1a43d74e30d418efdc4d1a334bdf,
+  rightBigRing: {fileID: 6990403577751723823, guid: d46fc3859a87bfb4cb902477adb7f1e1,
     type: 3}
-  rightSmallRing: {fileID: 6685271780526173261, guid: 61cfec2573c937c4181476dc3c6b4f4f,
+  rightSmallRing: {fileID: 6517777144422915015, guid: afb3144261455f74ba3ad53d55d189a7,
     type: 3}
   parentObject: {fileID: 574158384}
 --- !u!4 &143402654
@@ -382,9 +382,10 @@ GameObject:
   - component: {fileID: 175791128}
   - component: {fileID: 175791130}
   - component: {fileID: 175791129}
+  - component: {fileID: 175791131}
   m_Layer: 5
   m_Name: RightCat
-  m_TagString: Untagged
+  m_TagString: cats
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -495,6 +496,27 @@ CircleCollider2D:
   m_Offset: {x: -28.2, y: 0}
   serializedVersion: 2
   m_Radius: 4
+--- !u!50 &175791131
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175791124}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &223047897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,9 +1576,10 @@ GameObject:
   - component: {fileID: 2039113045}
   - component: {fileID: 2039113047}
   - component: {fileID: 2039113046}
+  - component: {fileID: 2039113048}
   m_Layer: 5
   m_Name: LeftCat
-  m_TagString: Untagged
+  m_TagString: cats
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1667,3 +1690,24 @@ CircleCollider2D:
   m_Offset: {x: 16.9, y: 0}
   serializedVersion: 2
   m_Radius: 4
+--- !u!50 &2039113048
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039113041}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
