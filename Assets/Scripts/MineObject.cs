@@ -37,7 +37,7 @@ public class MineObject : MonoBehaviour
         if (collision.tag == "cats")
         {
             hit = false;
-            GameManager.instance.NoteHit();
+            GameManager.instance.NoteHit(false);
         }
     }
 }

@@ -86,7 +86,6 @@ public class NotesController : MonoBehaviour
 
     public void spawnNotes(HitObject hitObject)
     {
-        hitObject.printAll();
         if (hitObject.getX() == 64)
         {
             if(hitObject.IsMine())

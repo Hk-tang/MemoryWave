@@ -6,6 +6,7 @@ public class NoteObject : MonoBehaviour
 {
     public bool hit;
     public KeyCode keyCode;
+    public bool goodHit;
 
     // Start is called before the first frame update
     void Start()
@@ -18,14 +19,19 @@ public class NoteObject : MonoBehaviour
     {
         if (hit && Input.GetKeyDown(keyCode))
         {
-            GameManager.instance.NoteHit();
+            GameManager.instance.NoteHit(goodHit);
             gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "cats")
+        if (collision.tag == "goodHitbox")
+        {
+            goodHit = true;
+            hit = true;
+        }
+        if (collision.tag == "normalHitbox")
         {
             hit = true;
         }
@@ -33,9 +39,15 @@ public class NoteObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "cats")
+        if (collision.tag == "goodHitbox")
+        {
+            goodHit = false;
+            hit = false;
+        }
+        if (collision.tag == "normalHitbox")
         {
             hit = false;
+            goodHit = false;
             GameManager.instance.NoteMissed();
         }
     }
