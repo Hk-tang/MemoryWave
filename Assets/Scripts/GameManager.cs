@@ -6,8 +6,7 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-	
-	float songPosition;
+  	float songPosition;
 	float currentOffset;
 
 	int nextIndex = 0;
@@ -30,8 +29,13 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    void loadLevel(string filename)
+    void loadLevel()
     {
+        Dictionary<string, string> song = SongSelectParser.Instance.selectedSong;
+        string filename = song["SongMap"];
+        //AudioClip audioClip = Resources.Load<AudioClip>(song["SongPreview"]);
+        //string audioPath = song["SongPreview"];
+
         string line;
         bool timingPointsStart = false;
         bool hitObjectsStart = false;
@@ -96,7 +100,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         // File parser for Kevin to do stuff with.		
-        loadLevel("Assets/Scripts/Alan-Walker-Faded.memw");
+        loadLevel();
         // Start Song
 
         startTime = 0;

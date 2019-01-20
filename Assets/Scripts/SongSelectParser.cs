@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class SongSelectParser : MonoBehaviour
 {
+    public static SongSelectParser Instance;
+
     public ScrollRect scrollView;
     public GameObject scrollContent;
     public GameObject scrollItemPrefab;
@@ -19,7 +21,7 @@ public class SongSelectParser : MonoBehaviour
 
     private List<Dictionary<string, string>> songs = new List<Dictionary<string, string>>();
 
-    private string selectedSong;
+    public Dictionary<string, string> selectedSong = new Dictionary<string, string>();
 
     static HashSet<string> metaInfo = new HashSet<string>
     {
@@ -38,12 +40,13 @@ public class SongSelectParser : MonoBehaviour
 
     };
 
-    //private void Awake()
-    //{
-    //    DontDestroyOnLoad(this.gameObject);
-    //}
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        Instance = this;
+    }
 
-    // Start is called before the first frame update
+    // start is called before the first frame update
     void Start()
     {
         CreateSongList();
@@ -97,7 +100,7 @@ public class SongSelectParser : MonoBehaviour
         audioSource.Stop();
         GenerateSongInfo(song);
 
-        if (selectedSong == song["AudioFilename"])
+        if (selectedSong.ContainsKey("AudioFilename") && selectedSong["AudioFilename"] == song["AudioFilename"])
         {
             SceneManager.LoadScene("Game");
         }
@@ -105,7 +108,7 @@ public class SongSelectParser : MonoBehaviour
         {
             audioSource.clip = Resources.Load<AudioClip>(song["SongPreview"]);
             audioSource.Play();
-            selectedSong = song["AudioFilename"];
+            selectedSong = song;
         }
         
     }
@@ -123,6 +126,7 @@ public class SongSelectParser : MonoBehaviour
             string coverFile = Directory.GetFiles(directory, "*.png")[0].Replace(".\\Assets\\Resources\\", "").Replace(".png", "").Replace(".jpeg", "");
             var songInfo = new Dictionary<string, string>
             {
+                ["SongMap"] = songMap,
                 ["Selected"] = "false",
                 ["SongPreview"] = audioFile,
                 ["SongLength"] = (songLength / 60).ToString() + ":" + (songLength % 60).ToString(),
