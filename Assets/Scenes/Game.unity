@@ -262,13 +262,13 @@ MonoBehaviour:
   leftSpawnerSmall: {fileID: 1829412078}
   rightSpawnerBig: {fileID: 944634980}
   rightSpawnerSmall: {fileID: 223047898}
-  leftBigRing: {fileID: 1601739708822290438, guid: 962dec1bbb7a1f94ab3c19b3cadb594c,
+  leftBigRing: {fileID: 516012304256311629, guid: 962dec1bbb7a1f94ab3c19b3cadb594c,
     type: 3}
-  leftSmallRing: {fileID: 6280715391934565570, guid: ea1fbea7409fc33469205164011a40ef,
+  leftSmallRing: {fileID: 3170157532953636953, guid: ea1fbea7409fc33469205164011a40ef,
     type: 3}
-  rightBigRing: {fileID: 7487346176860627515, guid: 4f1e1a43d74e30d418efdc4d1a334bdf,
+  rightBigRing: {fileID: 167071841473839551, guid: 4f1e1a43d74e30d418efdc4d1a334bdf,
     type: 3}
-  rightSmallRing: {fileID: 2529813141656412134, guid: 61cfec2573c937c4181476dc3c6b4f4f,
+  rightSmallRing: {fileID: 6685271780526173261, guid: 61cfec2573c937c4181476dc3c6b4f4f,
     type: 3}
   parentObject: {fileID: 574158384}
 --- !u!4 &143402654
@@ -380,6 +380,8 @@ GameObject:
   - component: {fileID: 175791127}
   - component: {fileID: 175791126}
   - component: {fileID: 175791128}
+  - component: {fileID: 175791130}
+  - component: {fileID: 175791129}
   m_Layer: 5
   m_Name: RightCat
   m_TagString: Untagged
@@ -461,6 +463,38 @@ MonoBehaviour:
   handsDownSprite: {fileID: 21300000, guid: 4c1ff1a6a7f56ae4e87cf6da257a9c09, type: 3}
   leftHandKey: 112
   rightHandKey: 111
+--- !u!58 &175791129
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175791124}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 17.99, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
+--- !u!58 &175791130
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175791124}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -28.2, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
 --- !u!1 &223047897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,6 +1552,8 @@ GameObject:
   - component: {fileID: 2039113044}
   - component: {fileID: 2039113043}
   - component: {fileID: 2039113045}
+  - component: {fileID: 2039113047}
+  - component: {fileID: 2039113046}
   m_Layer: 5
   m_Name: LeftCat
   m_TagString: Untagged
@@ -1599,3 +1635,35 @@ MonoBehaviour:
   handsDownSprite: {fileID: 21300000, guid: 4c1ff1a6a7f56ae4e87cf6da257a9c09, type: 3}
   leftHandKey: 113
   rightHandKey: 119
+--- !u!58 &2039113046
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039113041}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -28.48, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
+--- !u!58 &2039113047
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039113041}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 16.9, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
