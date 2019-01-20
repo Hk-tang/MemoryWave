@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
     private double noteBaseScore;
     public double baseScore;
 	
-	public Texture whiteTexture;
-	
+    public Text scoreText;
 
     public static GameManager instance;
 
@@ -109,16 +108,17 @@ public class GameManager : MonoBehaviour
         score = 0;
         simSaysBaseScore = 100;
         noteBaseScore = 10;
+        scoreText.text = "Score: 0";
         //GetComponent<AudioSource>().Play();
 
     }
 	
     public void NoteHit(bool goodHit)
     {
-
         Debug.Log("note hit AAYYYYYYYYYYYYYYYYYYYYYY");
         Debug.Log(string.Format("good hit: {0}", goodHit));
         score += baseScore;
+        scoreText.text = string.Format("Score: {0}", score);
     }
 
     public void NoteMissed()
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
 
         //gets latest timing points
         long offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
-        if (timingIndex >= timingPointsList.Count && offsetTime >= timingPointsList[timingIndex].getOffset())
+        if (timingIndex < timingPointsList.Count && offsetTime >= timingPointsList[timingIndex].getOffset())
         {
             if(timingPointsList[timingIndex].getPlaymode() == 0) //note mode
             {
