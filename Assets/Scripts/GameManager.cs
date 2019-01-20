@@ -23,8 +23,10 @@ public class GameManager : MonoBehaviour
     private double simSaysBaseScore;
     private double noteBaseScore;
     public double baseScore;
-	
+    public double prevTime;
+
     public Text scoreText;
+    public Text hitText;
 
     public static GameManager instance;
 
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
         simSaysBaseScore = 100;
         noteBaseScore = 10;
         scoreText.text = "Score: 0";
+        prevTime = DateTime.Now.Ticks;
         //GetComponent<AudioSource>().Play();
 
     }
@@ -119,16 +122,30 @@ public class GameManager : MonoBehaviour
         Debug.Log(string.Format("good hit: {0}", goodHit));
         score += baseScore;
         scoreText.text = string.Format("Score: {0}", score);
+        if (goodHit)
+        {
+            hitText.text = "good hit";
+        } else
+        {
+            hitText.text = "normal hit";
+        }
     }
 
     public void NoteMissed()
     {
         Debug.Log("note missed :(");
+        hitText.text = "note missed";
     }
 
 
     void Update() {
-        if(startTime == 0)
+        if ((DateTime.Now.Ticks - prevTime) / TimeSpan.TicksPerMillisecond > 1000)
+        {
+            prevTime = DateTime.Now.Ticks;
+            hitText.text = "";
+        }
+
+        if (startTime == 0)
         {
             startTime = DateTime.Now.Ticks;
         }
