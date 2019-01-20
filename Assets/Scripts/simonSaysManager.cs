@@ -19,7 +19,6 @@ public class simonSaysManager : MonoBehaviour
 	public GameObject yellowButton;
 	public GameObject greenButton;
 	
-	
     List<GameObject> gameButtons;
 
     int bleepCount = 3;
@@ -27,16 +26,23 @@ public class simonSaysManager : MonoBehaviour
     List<int> bleeps = new List<int>();
     public List<int> playerBleeps = new List<int>();
 
+	
+	public static simonSaysManager instance;
+	
+	AudioSource[] buttonSounds;
+	
     bool inputEnabled = false;
 	
 	// Calls to init button objects  
     void Start() {
+		instance = this;
         gameButtons = new List<GameObject>();
 	
         ButtonSetter(0, redButton);
 		ButtonSetter(1, blueButton);
 		ButtonSetter(2, yellowButton);
 		ButtonSetter(3, greenButton);
+		buttonSounds = GetComponents<AudioSource>();
 		
     }
 
@@ -51,19 +57,8 @@ public class simonSaysManager : MonoBehaviour
 	
 	// Play the audio upon button press
 	public void PlayAudio(int index) {
-	float length = 0.5f;
-	float frequency = 0.001f * ((float)index + 1f);
-
-	AnimationCurve volumeCurve = new AnimationCurve(new Keyframe(0f, 1f, 0f, -1f), new Keyframe(length, 0f, -1f, 0f));
-	AnimationCurve frequencyCurve = new AnimationCurve(new Keyframe(0f, frequency, 0f, 0f), new Keyframe(length, frequency, 0f, 0f));
-
-	LeanAudioOptions audioOptions = LeanAudio.options();
-	audioOptions.setWaveSine();
-	audioOptions.setFrequency(44100);
-
-	AudioClip audioClip = LeanAudio.createAudio(volumeCurve, frequencyCurve, audioOptions);
-
-	LeanAudio.play(audioClip, 0.5f);
+		buttonSounds[index].Play();
+	
     }
 	
 	

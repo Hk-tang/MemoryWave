@@ -25,9 +25,6 @@ public class GameManager : MonoBehaviour
     private double noteBaseScore;
     public double baseScore;
 	
-	public Texture whiteTexture;
-	
-
     public static GameManager instance;
 
     void loadLevel(string filename)
@@ -120,7 +117,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("note missed :(");
     }
-
+		
 
     void Update() {
         if(startTime == 0)
@@ -130,15 +127,20 @@ public class GameManager : MonoBehaviour
 
         //gets latest timing points
         long offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
-        if (timingIndex >= timingPointsList.Count && offsetTime >= timingPointsList[timingIndex].getOffset())
+        if (timingIndex < timingPointsList.Count && offsetTime >= timingPointsList[timingIndex].getOffset())
         {
+			Debug.Log(timingPointsList[timingIndex].getPlaymode());
             if(timingPointsList[timingIndex].getPlaymode() == 0) //note mode
             {
+				Debug.Log("Entering Note Mode");
                 baseScore = noteBaseScore;
                 simonSaysController.GetComponent<simonSaysManager>().disableInput();
             } else
             {
+				Debug.Log("Entering SS Mode");
                 baseScore = simSaysBaseScore;
+				
+				
                 simonSaysController.GetComponent<simonSaysManager>().enableInput();
             }
             timingIndex++;
