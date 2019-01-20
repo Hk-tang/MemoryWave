@@ -10,7 +10,7 @@ public class HitObject
     private int y;
     private int offset;
 
-    private bool isNote; //true for note, false for simon says
+    private bool isNote; //true for note
     private bool isMine;
     private bool flashRed;
     private bool flashGreen;

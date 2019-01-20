@@ -24,7 +24,6 @@ public class NoteObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.tag == "cats")
         {
             hit = true;
