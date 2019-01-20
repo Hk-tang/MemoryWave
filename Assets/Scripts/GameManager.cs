@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     private double simSaysBaseScore;
     private double noteBaseScore;
     public double baseScore;
+	
+	public Texture whiteTexture;
+	
 
     public static GameManager instance;
 
