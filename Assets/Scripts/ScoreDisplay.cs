@@ -2,54 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
 
-    public Text scoreText;
-    public Text maxComboText;
-    public Text accuracyText;
-    public Text numPerfectText;
-    public Text numGreatText;
-    public Text numGoodText;
-    public Text numBadText;
-    public Text numMissText;
-    public Button backButton;
-    public Button retryButton;
-
-    private int endScore = 0;
-    private int endMaxCombo = 0;
-    private int endAccuracy = 0;
-    private int endNumPerfect = 0;
-    private int endNumGreat = 0;
-    private int endNumGood = 0;
-    private int endNumBad = 0;
-    private int endNumMiss = 0;
+    public GameObject Score;
+    public GameObject Accuracy;
+    public GameObject NormalHits;
+    public GameObject GoodHits;
 
     // Start is called before the first frame update
     void Start()
     {
-        backButton.onClick.AddListener(GoBack);
-        endScore = 420;
-        scoreText.text = "FINAL SCORE: " + endScore.ToString();
-        maxComboText.text = "MAX COMBO: " + endMaxCombo.ToString() + "x";
-        accuracyText.text = "ACCURACY: " + endAccuracy.ToString() + "%";
-        numPerfectText.text = "PERFECTS: " + endNumPerfect.ToString();
-        numGreatText.text = "GREATS: " + endNumGreat.ToString();
-        numGoodText.text = "GOODS: " + endNumGood.ToString();
-        numBadText.text = "BADS: " + endNumBad.ToString();
-        numMissText.text = "MISSES: " + endNumMiss.ToString();
+        Score.GetComponent<TextMeshProUGUI>().text = "Score:" + GameManager.instance.score.ToString();
+        Accuracy.GetComponent<TextMeshProUGUI>().text = "Accuracy" + 
+            ((GameManager.instance.numNormalHit + GameManager.instance.numGoodHit) / GameManager.instance.hitObjectsList.Count).ToString();
+        NormalHits.GetComponent<TextMeshProUGUI>().text = "Normal Hits: " + GameManager.instance.numNormalHit.ToString();
+        GoodHits.GetComponent<TextMeshProUGUI>().text = "Good Hits: " + GameManager.instance.numGoodHit.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnRetryClick()
     {
-        
+        SceneManager.LoadScene("Game");
     }
 
-    // Update is called once per frame
-    void GoBack()
+    public void OnBackClick()
     {
-        numMissText.text = "BACK FUNCTIONALITY IS WIP";
+        SceneManager.LoadScene("SongSelect");
     }
 }
