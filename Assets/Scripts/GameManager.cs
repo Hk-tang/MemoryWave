@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,17 +13,23 @@ public class GameManager : MonoBehaviour
 	int nextIndex = 0;
 
     List<TimingPoints> timingPointsList = new List<TimingPoints>();
-    List<HitObject> hitObjectsList = new List<HitObject>();
+    public List<HitObject> hitObjectsList = new List<HitObject>();
     long startTime;
     int index;
     int timingIndex;
 
     public GameObject simonSaysController;
     public GameObject noteController;
+    public AudioSource audioSource;
+    private float timer = 0.0f;
+    private float songLength;
     public double score;
     private double simSaysBaseScore;
     private double noteBaseScore;
     public double baseScore;
+
+    public int numNormalHit;
+    public int numGoodHit;
 	
 	public Texture whiteTexture;
 	
@@ -33,8 +40,10 @@ public class GameManager : MonoBehaviour
     {
         Dictionary<string, string> song = SongSelectParser.Instance.selectedSong;
         string filename = song["SongMap"];
-        //AudioClip audioClip = Resources.Load<AudioClip>(song["SongPreview"]);
-        //string audioPath = song["SongPreview"];
+        AudioClip audioClip = Resources.Load<AudioClip>(song["SongPreview"]);
+        songLength = audioClip.length;
+        Debug.Log(songLength);
+        audioSource.PlayOneShot(audioClip);
 
         string line;
         bool timingPointsStart = false;
@@ -107,6 +116,8 @@ public class GameManager : MonoBehaviour
         index = 0;
         timingIndex = 0;
         score = 0;
+        numNormalHit = 0;
+        numGoodHit = 0;
         simSaysBaseScore = 100;
         noteBaseScore = 10;
         //GetComponent<AudioSource>().Play();
@@ -118,16 +129,27 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("note hit AAYYYYYYYYYYYYYYYYYYYYYY");
         Debug.Log(string.Format("good hit: {0}", goodHit));
+        if(goodHit)
+        {
+            numGoodHit++;
+        } else
+        {
+            numNormalHit++;
+        }
         score += baseScore;
     }
 
     public void NoteMissed()
     {
         Debug.Log("note missed :(");
+        score -= baseScore;
     }
 
 
     void Update() {
+
+        timer += Time.deltaTime;
+
         if(startTime == 0)
         {
             startTime = DateTime.Now.Ticks;
@@ -183,6 +205,12 @@ public class GameManager : MonoBehaviour
             {
                 break;
             }
+        }
+
+        Debug.Log(timer);
+        if (timer >= songLength)
+        {
+            SceneManager.LoadScene("RankingPanel");
         }
 
         // Start bleep input 
