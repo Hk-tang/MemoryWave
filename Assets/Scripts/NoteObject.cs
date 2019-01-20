@@ -20,14 +20,19 @@ public class NoteObject : MonoBehaviour
         {
             GameManager.instance.NoteHit();
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.tag);
         if (collision.tag == "cats")
         {
             hit = true;
+        }else if(collision.tag == "despawner")
+        {
+            Destroy(gameObject);
         }
     }
 
