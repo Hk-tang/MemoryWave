@@ -21,6 +21,7 @@ public class NoteObject : MonoBehaviour
         {
             GameManager.instance.NoteHit(goodHit);
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
@@ -34,6 +35,9 @@ public class NoteObject : MonoBehaviour
         if (collision.tag == "normalHitbox")
         {
             hit = true;
+        }else if(collision.tag == "despawner")
+        {
+            Destroy(gameObject);
         }
     }
 
