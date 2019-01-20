@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class NoteScroller : MonoBehaviour
 {
+
     public float beatTempo;
     // Start is called before the first frame update
     void Start()
     {
+
         beatTempo = 180;
     }
 

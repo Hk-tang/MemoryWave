@@ -1,5 +1,8 @@
 ﻿
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class HitObject
 {
@@ -26,6 +29,13 @@ public class HitObject
     /************************
      * getters
      ***********************/
+     public void printAll()
+    {
+        Debug.Log("~~~~~~~~");
+        Debug.Log(string.Format("{0} {1} {2} {3} {4} {5} {6}",x, y, offset, isNote, isSimonSays, isMine));
+        Debug.Log(string.Format("{0} {1} {2} {3} {4} {5}", flashRed, flashGreen, flashBlue, flashYellow, isHold, flashBlack));
+        Debug.Log("~~~~~~~~");
+    }
 
     public int getX()
     {
