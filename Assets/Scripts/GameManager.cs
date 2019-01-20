@@ -113,10 +113,11 @@ public class GameManager : MonoBehaviour
 
     }
 	
-    public void NoteHit()
+    public void NoteHit(bool goodHit)
     {
 
         Debug.Log("note hit AAYYYYYYYYYYYYYYYYYYYYYY");
+        Debug.Log(string.Format("good hit: {0}", goodHit));
         score += baseScore;
     }
 
