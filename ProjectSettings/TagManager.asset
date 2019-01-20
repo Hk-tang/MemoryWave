@@ -6,7 +6,9 @@ TagManager:
   tags:
   - cats
   - rings
-  - despawner
+  - normalHitbox
+  - goodHitBox
+  - goodHitbox
   layers:
   - Default
   - TransparentFX

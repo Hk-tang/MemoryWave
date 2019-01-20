@@ -55,7 +55,7 @@ public class HitObject
 
     public bool IsMine()
     {
-        return isNote;
+        return isMine;
     }
 
     public bool isFlashRed()
@@ -115,7 +115,7 @@ public class HitObject
 
     public void setIsNote(string input)
     {
-        isNote = readBit(Convert.ToInt32(input), 0);    
+        isNote = readBit(Convert.ToInt32(input), 0);
     }
 
     public void setIsMine(string input)
