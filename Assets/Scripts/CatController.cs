@@ -16,11 +16,20 @@ public class CatController : MonoBehaviour
 
     private bool leftHandKeyPressed;
     private bool rightHandKeyPressed;
-
+	
+	AudioSource[] bongoSounds;
+	
+	
+	SimpleSpectrum test;
+	
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
+		//bongo1Sound = GetComponent<AudioSource>();
+		//bongo2Sound = GetComponent<AudioSource>();
+			
+		bongoSounds = GetComponents<AudioSource>();
         leftHandKeyPressed = false;
         rightHandKeyPressed = false;
     }
@@ -32,6 +41,7 @@ public class CatController : MonoBehaviour
         {
             image.sprite = leftHandSprite;
             leftHandKeyPressed = true;
+			bongoSounds[0].Play();
         }
 
         if (Input.GetKeyUp(leftHandKey))
@@ -51,6 +61,7 @@ public class CatController : MonoBehaviour
         {
             image.sprite = rightHandSprite;
             rightHandKeyPressed = true;
+			bongoSounds[1].Play();
         }
 
         if (Input.GetKeyUp(rightHandKey))
