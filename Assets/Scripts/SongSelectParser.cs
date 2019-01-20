@@ -42,23 +42,26 @@ public class SongSelectParser : MonoBehaviour
     {
         List<Dictionary<string, string>> songs = new List<Dictionary<string, string>>();
         
-        foreach (string file in Directory.EnumerateFiles(".\\Songs", "*.memw"))
+        foreach(string directory in Directory.GetDirectories(".\\Songs"))
         {
-            string[] lines = File.ReadAllLines(file);
+            string[] files = Directory.GetFiles(directory, "*.memw");
+
+            StreamReader file = new StreamReader(files[0]);
             var songInfo = new Dictionary<string, string>();
-            
-            foreach (string line in lines)
+
+            // We only ever need to read the first 19 lines of a memw file
+            for (int i = 0; i < 20; i++)
             {
-                var parts = line.Split(':');
+                var parts = file.ReadLine().Split(':');
                 if (metaInfo.Contains(parts[0]))
                 {
                     songInfo[parts[0]] = parts[1];
                 }
-            }
 
+            }
             songs.Add(songInfo);
         }
-
+        
         return songs;
     }
 
