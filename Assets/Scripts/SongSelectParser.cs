@@ -31,10 +31,11 @@ public class SongSelectParser : MonoBehaviour
 
     void GenerateSongButton(Dictionary<string, string> song)
     {
-        
         GameObject songButton = Instantiate(scrollItemPrefab);
+        
         songButton.transform.SetParent(scrollContent.transform, false);
         songButton.transform.Find("SongTitle").gameObject.GetComponent<Text>().text = song["Title"];
+        songButton.transform.Find("SongPreview").gameObject.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>(song["SongPreview"]);
 
     }
 
@@ -42,12 +43,19 @@ public class SongSelectParser : MonoBehaviour
     {
         List<Dictionary<string, string>> songs = new List<Dictionary<string, string>>();
         
-        foreach(string directory in Directory.GetDirectories(".\\Songs"))
+        foreach(string directory in Directory.GetDirectories(".\\Assets\\Resources\\Songs"))
         {
             string[] files = Directory.GetFiles(directory, "*.memw");
+            string audioFile = Directory.GetFiles(directory, "*.mp3")[0];
+            // Remove the file path for the mp3 and the extension
+            audioFile = audioFile.Replace(".\\Assets\\Resources\\", "");
+            audioFile = audioFile.Replace(".mp3", "");
 
             StreamReader file = new StreamReader(files[0]);
-            var songInfo = new Dictionary<string, string>();
+            var songInfo = new Dictionary<string, string>
+            {
+                ["SongPreview"] = audioFile
+            };
 
             // We only ever need to read the first 19 lines of a memw file
             for (int i = 0; i < 20; i++)
