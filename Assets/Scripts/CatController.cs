@@ -17,10 +17,17 @@ public class CatController : MonoBehaviour
     private bool leftHandKeyPressed;
     private bool rightHandKeyPressed;
 
+	private AudioSource bongo1Sound;
+	private AudioSource bongo2Sound;
+	
+	
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
+		bongo1Sound = GetComponent<AudioSource>();
+		bongo2Sound = GetComponent<AudioSource>();
+			
         leftHandKeyPressed = false;
         rightHandKeyPressed = false;
     }
@@ -32,6 +39,7 @@ public class CatController : MonoBehaviour
         {
             image.sprite = leftHandSprite;
             leftHandKeyPressed = true;
+			bongo1Sound.Play();
         }
 
         if (Input.GetKeyUp(leftHandKey))
@@ -51,6 +59,7 @@ public class CatController : MonoBehaviour
         {
             image.sprite = rightHandSprite;
             rightHandKeyPressed = true;
+			bongo2Sound.Play();
         }
 
         if (Input.GetKeyUp(rightHandKey))
