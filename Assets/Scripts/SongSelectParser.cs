@@ -5,9 +5,12 @@ using System.IO;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class SongSelectParser : MonoBehaviour
 {
+    public static SongSelectParser Instance;
+
     public ScrollRect scrollView;
     public GameObject scrollContent;
     public GameObject scrollItemPrefab;
@@ -16,10 +19,13 @@ public class SongSelectParser : MonoBehaviour
     public GameObject infoContent;
     public GameObject songDetailPrefab;
 
-    List<Dictionary<string, string>> songs = new List<Dictionary<string, string>>();
+    private List<Dictionary<string, string>> songs = new List<Dictionary<string, string>>();
+
+    public Dictionary<string, string> selectedSong = new Dictionary<string, string>();
 
     static HashSet<string> metaInfo = new HashSet<string>
     {
+        "AudioFilename",
         "PreviewTime",
         "Title",
         "Artist",
@@ -34,7 +40,13 @@ public class SongSelectParser : MonoBehaviour
 
     };
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        Instance = this;
+    }
+
+    // start is called before the first frame update
     void Start()
     {
         CreateSongList();
@@ -88,8 +100,17 @@ public class SongSelectParser : MonoBehaviour
         audioSource.Stop();
         GenerateSongInfo(song);
 
-        audioSource.clip = Resources.Load<AudioClip>(song["SongPreview"]);
-        audioSource.Play();
+        if (selectedSong.ContainsKey("AudioFilename") && selectedSong["AudioFilename"] == song["AudioFilename"])
+        {
+            SceneManager.LoadScene("Game");
+        }
+        else
+        {
+            audioSource.clip = Resources.Load<AudioClip>(song["SongPreview"]);
+            audioSource.Play();
+            selectedSong = song;
+        }
+        
     }
 
     void CreateSongList()
@@ -105,6 +126,8 @@ public class SongSelectParser : MonoBehaviour
             string coverFile = Directory.GetFiles(directory, "*.png")[0].Replace(".\\Assets\\Resources\\", "").Replace(".png", "").Replace(".jpeg", "");
             var songInfo = new Dictionary<string, string>
             {
+                ["SongMap"] = songMap,
+                ["Selected"] = "false",
                 ["SongPreview"] = audioFile,
                 ["SongLength"] = (songLength / 60).ToString() + ":" + (songLength % 60).ToString(),
                 ["CoverPhoto"] = coverFile
