@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -269,6 +269,14 @@ MonoBehaviour:
   rightBigRing: {fileID: 6990403577751723823, guid: d46fc3859a87bfb4cb902477adb7f1e1,
     type: 3}
   rightSmallRing: {fileID: 6517777144422915015, guid: afb3144261455f74ba3ad53d55d189a7,
+    type: 3}
+  leftBigMine: {fileID: 2913275051926315464, guid: 77134b99d1b5e8845b6c49d7b9b7d74c,
+    type: 3}
+  leftSmallMine: {fileID: 7819483647299279163, guid: 5cf95fcae8161c245be4acf70419cd77,
+    type: 3}
+  rightBigMine: {fileID: 6617287270163996515, guid: 1a2790fab3f5f8e46b615b9c66dfcda2,
+    type: 3}
+  rightSmallMine: {fileID: 7707188533850463645, guid: bb0b07c0de9960847b2e5f27a907fada,
     type: 3}
   parentObject: {fileID: 574158384}
 --- !u!4 &143402654
@@ -938,6 +946,7 @@ MonoBehaviour:
   noteController: {fileID: 1237285640}
   score: 0
   baseScore: 0
+  whiteTexture: {fileID: 0}
 --- !u!4 &1047737264
 Transform:
   m_ObjectHideFlags: 0
@@ -992,6 +1001,14 @@ MonoBehaviour:
   rightBigRing: {fileID: 6990403577751723823, guid: d46fc3859a87bfb4cb902477adb7f1e1,
     type: 3}
   rightSmallRing: {fileID: 6517777144422915015, guid: afb3144261455f74ba3ad53d55d189a7,
+    type: 3}
+  leftBigMine: {fileID: 2913275051926315464, guid: 77134b99d1b5e8845b6c49d7b9b7d74c,
+    type: 3}
+  leftSmallMine: {fileID: 7819483647299279163, guid: 5cf95fcae8161c245be4acf70419cd77,
+    type: 3}
+  rightBigMine: {fileID: 6617287270163996515, guid: 1a2790fab3f5f8e46b615b9c66dfcda2,
+    type: 3}
+  rightSmallMine: {fileID: 7707188533850463645, guid: bb0b07c0de9960847b2e5f27a907fada,
     type: 3}
   parentObject: {fileID: 574158384}
 --- !u!4 &1237285642
@@ -1121,7 +1138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 2.6872427
+  m_AspectRatio: 3.0509555
 --- !u!1 &1314250961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.0000634, y: 17.999983}
+  m_AnchoredPosition: {x: -4, y: 18}
   m_SizeDelta: {x: 220.26526, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1538406991
