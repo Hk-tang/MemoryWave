@@ -89,7 +89,6 @@ public class NotesController : MonoBehaviour
         var currentRing = Instantiate(leftBigRing, leftSpawnerBig.position, leftSpawnerBig.rotation);
         currentRing.transform.SetParent(parentObject.transform);
         currentRing.transform.localScale = new Vector3(1.15f, 0.85f, 0);
-        currentRing.tag = "rings";
     }
 
     void spawnLeftSmallRing()
@@ -97,7 +96,6 @@ public class NotesController : MonoBehaviour
         var currentRing = Instantiate(leftSmallRing, leftSpawnerSmall.position, leftSpawnerSmall.rotation);
         currentRing.transform.SetParent(parentObject.transform);
         currentRing.transform.localScale = new Vector3(1.0f, 0.85f, 0);
-        currentRing.tag = "rings";
     }
 
     void spawnRightBigRing()
@@ -105,7 +103,6 @@ public class NotesController : MonoBehaviour
         var currentRing = Instantiate(rightBigRing, rightSpawnerBig.position, rightSpawnerBig.rotation);
         currentRing.transform.SetParent(parentObject.transform);
         currentRing.transform.localScale = new Vector3(1.15f, 0.85f, 0);
-        currentRing.tag = "rings";
     }
 
     void spawnRightSmallRing()
@@ -113,7 +110,6 @@ public class NotesController : MonoBehaviour
         var currentRing = Instantiate(rightSmallRing, rightSpawnerSmall.position, rightSpawnerSmall.rotation);
         currentRing.transform.SetParent(parentObject.transform);
         currentRing.transform.localScale = new Vector3(1.0f, 0.85f, 0);
-        currentRing.tag = "rings";
     }
 
     // Start is called before the first frame update

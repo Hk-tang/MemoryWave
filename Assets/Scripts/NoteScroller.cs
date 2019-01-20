@@ -10,7 +10,7 @@ public class NoteScroller : MonoBehaviour
     void Start()
     {
 
-        beatTempo = 90;
+        //beatTempo = 90;
     }
 
     // Update is called once per frame
