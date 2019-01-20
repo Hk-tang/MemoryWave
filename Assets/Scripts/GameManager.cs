@@ -16,10 +16,16 @@ public class GameManager : MonoBehaviour
     List<HitObject> hitObjectsList = new List<HitObject>();
     long startTime;
     int index;
+    int timingIndex;
 
     public GameObject simonSaysController;
     public GameObject noteController;
-    
+    public double score;
+    private double simSaysBaseScore;
+    private double noteBaseScore;
+    public double baseScore;
+
+    public static GameManager instance;
 
     void loadLevel(string filename)
     {
@@ -81,28 +87,64 @@ public class GameManager : MonoBehaviour
             }
         }
         file.Close();
-        //Debug.Log("yay");
     }
 
     void Start() {
+        instance = this;
+
         // File parser for Kevin to do stuff with.		
         loadLevel("Assets/Scripts/Alan-Walker-Faded.memw");
         // Start Song
 
         startTime = 0;
         index = 0;
+        timingIndex = 0;
+        score = 0;
+        simSaysBaseScore = 100;
+        noteBaseScore = 10;
         //GetComponent<AudioSource>().Play();
 
     }
 	
-	void Update() {
+    public void NoteHit()
+    {
+
+        Debug.Log("note hit AAYYYYYYYYYYYYYYYYYYYYYY");
+        score += baseScore;
+    }
+
+    public void NoteMissed()
+    {
+        Debug.Log("note missed :(");
+    }
+
+
+    void Update() {
         if(startTime == 0)
         {
             startTime = DateTime.Now.Ticks;
         }
+
+        //gets latest timing points
+        long offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
+        if (timingIndex >= timingPointsList.Count && offsetTime >= timingPointsList[timingIndex].getOffset())
+        {
+            if(timingPointsList[timingIndex].getPlaymode() == 0) //note mode
+            {
+                baseScore = noteBaseScore;
+                simonSaysController.GetComponent<simonSaysManager>().disableInput();
+            } else
+            {
+                baseScore = simSaysBaseScore;
+                simonSaysController.GetComponent<simonSaysManager>().enableInput();
+            }
+            timingIndex++;
+        }
+
+        //generate notes for simon says and ddr
         while (index < hitObjectsList.Count)
         {
-            long offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
+            offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
             HitObject hitObject = hitObjectsList[index];
             
             if (offsetTime >= hitObject.getOffset())
@@ -134,19 +176,12 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-		
-		// Receive hit status, for use in score
-		
-		// Start bleep input 
-		// Receive bleep status
-		
-		
-		// End bleep input 
-		
-		
-		// score calculations 
-		
-		
-	}
+
+        // Start bleep input 
+        // Receive bleep status
+
+
+        // End bleep input 
+    }
 	
 }

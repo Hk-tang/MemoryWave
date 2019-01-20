@@ -14,27 +14,27 @@ public class TimingPoints
         this.msPerBeat = msPerBeat;
         this.beatsPerMeasure = beatsPerMeasure;
         this.volume = volume;
-        this.playmode = playmode;
+        this.playmode = playmode; //0 is ring mode, 1 is simon says mode
     }
 
-    private int getOffset()
+    public int getOffset()
     {
         return offset;
     }
-    private double getMsPerBeat()
+    public double getMsPerBeat()
     {
         return msPerBeat;
     }
-    private int getBeatsPerMeasure()
+    public int getBeatsPerMeasure()
     {
         return beatsPerMeasure;
     }
-    private int getVolume()
+    public int getVolume()
     {
         return volume;
     }
 
-    private int getPlaymode()
+    public int getPlaymode()
     {
         return playmode;
     }

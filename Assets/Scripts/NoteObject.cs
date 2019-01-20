@@ -18,6 +18,7 @@ public class NoteObject : MonoBehaviour
     {
         if (hit && Input.GetKeyDown(keyCode))
         {
+            GameManager.instance.NoteHit();
             gameObject.SetActive(false);
         }
     }
@@ -35,6 +36,7 @@ public class NoteObject : MonoBehaviour
         if (collision.tag == "cats")
         {
             hit = false;
+            GameManager.instance.NoteMissed();
         }
     }
 }

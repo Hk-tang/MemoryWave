@@ -108,7 +108,10 @@ public class simonSaysManager : MonoBehaviour
 	}
 	
 	void Update() {
-
+        if(!inputEnabled)
+        {
+            return;
+        }
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
 			MemoryInput(0);
 		}
@@ -124,9 +127,18 @@ public class simonSaysManager : MonoBehaviour
 
 	}
 	
-	
-	
-	void Success() {
+    public void enableInput()
+    {
+        inputEnabled = true;
+    }
+
+    public void disableInput()
+    {
+        inputEnabled = false;
+    }
+
+
+    void Success() {
 		// handle success
 	}
 	
