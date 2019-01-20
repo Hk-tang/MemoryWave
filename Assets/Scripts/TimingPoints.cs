@@ -16,4 +16,26 @@ public class TimingPoints
         this.volume = volume;
         this.playmode = playmode;
     }
+
+    private int getOffset()
+    {
+        return offset;
+    }
+    private double getMsPerBeat()
+    {
+        return msPerBeat;
+    }
+    private int getBeatsPerMeasure()
+    {
+        return beatsPerMeasure;
+    }
+    private int getVolume()
+    {
+        return volume;
+    }
+
+    private int getPlaymode()
+    {
+        return playmode;
+    }
 }

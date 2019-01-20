@@ -136,12 +136,6 @@ public class GameManager : MonoBehaviour
         }
 		
 		// Receive hit status, for use in score
-		///////
-		///////
-		
-		
-		// Show/Set bleep
-
 		
 		// Start bleep input 
 		// Receive bleep status
