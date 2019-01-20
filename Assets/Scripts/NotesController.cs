@@ -20,6 +20,7 @@ public class NotesController : MonoBehaviour
     List<HitObject> hitObjectsList = new List<HitObject>();
 
     int index;
+    long startTime;
 
     void loadLevel(string filename)
     {
@@ -39,18 +40,18 @@ public class NotesController : MonoBehaviour
             {
                 continue;
             }
-            Debug.Log(line);
+            //Debug.Log(line);
 
             if (line == "#TimingPoints")
             {
-                Debug.Log("TimingPoints start");
+                //Debug.Log("TimingPoints start");
                 hitObjectsStart = false;
                 timingPointsStart = true;
                 continue;
             }
             if (line == "#HitObjects")
             {
-                Debug.Log("hitobject start");
+                //Debug.Log("hitobject start");
                 hitObjectsStart = true;
                 timingPointsStart = false;
                 continue;
@@ -58,6 +59,7 @@ public class NotesController : MonoBehaviour
 
             if (hitObjectsStart)
             {
+                //Debug.Log(line);
                 tmp = line.Split(',');
                 HitObject hitObjects = new HitObject();
                 hitObjects.setX(tmp[0]);
@@ -79,42 +81,82 @@ public class NotesController : MonoBehaviour
             }
         }
         file.Close();
-        Debug.Log("yay");
+        //Debug.Log("yay");
+    }
+
+    void spawnLeftBigRing()
+    {
+        var currentRing = Instantiate(leftBigRing, leftSpawnerBig.position, leftSpawnerBig.rotation);
+        currentRing.transform.SetParent(parentObject.transform);
+        currentRing.transform.localScale = new Vector3(1.15f, 0.85f, 0);
+    }
+
+    void spawnLeftSmallRing()
+    {
+        var currentRing = Instantiate(leftSmallRing, leftSpawnerSmall.position, leftSpawnerSmall.rotation);
+        currentRing.transform.SetParent(parentObject.transform);
+        currentRing.transform.localScale = new Vector3(1.0f, 0.85f, 0);
+    }
+
+    void spawnRightBigRing()
+    {
+        var currentRing = Instantiate(rightBigRing, rightSpawnerBig.position, rightSpawnerBig.rotation);
+        currentRing.transform.SetParent(parentObject.transform);
+        currentRing.transform.localScale = new Vector3(1.15f, 0.85f, 0);
+    }
+
+    void spawnRightSmallRing()
+    {
+        var currentRing = Instantiate(rightSmallRing, rightSpawnerSmall.position, rightSpawnerSmall.rotation);
+        currentRing.transform.SetParent(parentObject.transform);
+        currentRing.transform.localScale = new Vector3(1.0f, 0.85f, 0);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        var currentRing = Instantiate(leftBigRing, leftSpawnerBig.position, leftSpawnerBig.rotation);
-        currentRing.transform.parent = parentObject.transform;
-        currentRing.transform.localScale = new Vector3(1.15f, 0.85f, 0);
-
-        currentRing = Instantiate(leftSmallRing, leftSpawnerSmall.position, leftSpawnerSmall.rotation);
-        currentRing.transform.parent = parentObject.transform;
-        currentRing.transform.localScale = new Vector3(1.0f, 0.85f, 0);
-
-        currentRing = Instantiate(rightBigRing, rightSpawnerBig.position, rightSpawnerBig.rotation);
-        currentRing.transform.parent = parentObject.transform;
-        currentRing.transform.localScale = new Vector3(1.15f, 0.85f, 0);
-
-        currentRing = Instantiate(rightSmallRing, rightSpawnerSmall.position, rightSpawnerSmall.rotation);
-        currentRing.transform.parent = parentObject.transform;
-        currentRing.transform.localScale = new Vector3(1.0f, 0.85f, 0);
-        */
-
         index = 0;
         loadLevel("Assets/Scripts/Alan-Walker-Faded.memw");
-        int i = 0;
-        Debug.Log(hitObjectsList.Count);
-        Debug.Log(timingPointsList.Count);
-
-
+        startTime = DateTime.Now.Ticks;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        while (index < hitObjectsList.Count)
+        {
+            long offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
+            HitObject hitObject = hitObjectsList[index];
+            Debug.Log("here1");
+            Debug.Log(offsetTime);
+            if (!hitObject.IsNote())
+            {
+                index++;
+            } else if (offsetTime >= hitObject.getOffset())
+            {
+                Debug.Log("here2");
+                if (hitObject.getX() == 64)
+                {
+                    spawnLeftBigRing();
+                }
+                else if (hitObject.getX() == 192)
+                {
+                    spawnLeftSmallRing();
+                }
+                else if (hitObject.getX() == 320)
+                {
+                    spawnRightBigRing();
+                }
+                else if (hitObject.getX() == 448)
+                {
+                    spawnRightSmallRing();
+                }
+                index++;
+            } else
+            {
+                break;
+            }
+        }
     }
 }

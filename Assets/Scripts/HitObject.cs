@@ -11,7 +11,6 @@ public class HitObject
     private int offset;
 
     private bool isNote; //true for note, false for simon says
-    private bool isSimonSays;
     private bool isMine;
     private bool flashRed;
     private bool flashGreen;
@@ -31,10 +30,7 @@ public class HitObject
      ***********************/
      public void printAll()
     {
-        Debug.Log("~~~~~~~~");
-        Debug.Log(string.Format("{0} {1} {2} {3} {4} {5} {6}",x, y, offset, isNote, isSimonSays, isMine));
-        Debug.Log(string.Format("{0} {1} {2} {3} {4} {5}", flashRed, flashGreen, flashBlue, flashYellow, isHold, flashBlack));
-        Debug.Log("~~~~~~~~");
+        Debug.Log(string.Format("HitObject: {0} {1} {2} {3} {4} | {5} {6} {7} {8} {9} {10}",x, y, offset, isNote, isMine, flashRed, flashGreen, flashBlue, flashYellow, isHold, flashBlack));
     }
 
     public int getX()
@@ -55,11 +51,6 @@ public class HitObject
     public bool IsNote()
     {
         return isNote;
-    }
-
-    public bool IsSimonSays()
-    {
-        return !isNote;
     }
 
     public bool IsMine()
@@ -117,8 +108,6 @@ public class HitObject
         offset = Convert.ToInt32(input);
     }
 
-    
-
     private bool readBit(int num, int index)
     {
         return (num & (1 << index)) != 0;
@@ -126,7 +115,7 @@ public class HitObject
 
     public void setIsNote(string input)
     {
-        isNote = readBit(Convert.ToInt32(input), 0);
+        isNote = readBit(Convert.ToInt32(input), 0);    
     }
 
     public void setIsMine(string input)
