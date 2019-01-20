@@ -20,6 +20,7 @@ public class NoteObject : MonoBehaviour
         {
             GameManager.instance.NoteHit();
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
@@ -28,6 +29,9 @@ public class NoteObject : MonoBehaviour
         if (collision.tag == "cats")
         {
             hit = true;
+        }else if(collision.tag == "despawner")
+        {
+            Destroy(gameObject);
         }
     }
 

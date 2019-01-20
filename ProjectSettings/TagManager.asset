@@ -6,6 +6,7 @@ TagManager:
   tags:
   - cats
   - rings
+  - despawner
   layers:
   - Default
   - TransparentFX
