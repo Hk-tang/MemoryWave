@@ -12,19 +12,31 @@ public class SongButtonParser : MonoBehaviour
     public GameObject scrollItemPrefab;
 
     static HashSet<string> metaInfo = new HashSet<string>
+    {
+        "PreviewTime",
+        "Title",
+        "Artist",
+        "Creator",
+        "Difficulty",
+        "Source",
+        "Tags",
+        "LevelID",
+        "HPDrainRate",
+        "OverallDifficulty",
+        "ApproachRate"
+    };
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        List<Dictionary<string, string>> songs = CreateSongList();
+        foreach (Dictionary<string, string> song in songs)
         {
-            "PreviewTime",
-            "Title",
-            "Artist",
-            "Creator",
-            "Difficulty",
-            "Source",
-            "Tags",
-            "LevelID",
-            "HPDrainRate",
-            "OverallDifficulty",
-            "ApproachRate"
-        };
+            GenerateSongButton(song);
+        }
+
+        scrollView.verticalNormalizedPosition = 1;
+    }
 
     void GenerateSongButton(Dictionary<string, string> song)
     {
@@ -68,17 +80,5 @@ public class SongButtonParser : MonoBehaviour
         }
 
         return songs;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        List<Dictionary<string, string>> songs = CreateSongList();
-        foreach (Dictionary<string, string> song in songs)
-        {
-            GenerateSongButton(song);
-        }
-
-        scrollView.verticalNormalizedPosition = 1;
     }
 }

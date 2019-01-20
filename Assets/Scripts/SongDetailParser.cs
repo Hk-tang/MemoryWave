@@ -12,7 +12,7 @@ public class SongDetailParser : MonoBehaviour
         
     }
 
-    List<Dictionary<string, string>> CreateSongList()
+    List<Dictionary<string, string>> CreateSongDetails()
     {
         List<Dictionary<string, string>> songs = new List<Dictionary<string, string>>();
 
@@ -21,33 +21,28 @@ public class SongDetailParser : MonoBehaviour
             // Should only be one .memw file in each song directory
             string songMap = Directory.GetFiles(directory, "*.memw")[0];
 
-            // Remove the file path for the mp3 and the extension
             string audioFile = Directory.GetFiles(directory, "*.mp3")[0].Replace(".\\Assets\\Resources\\", "").Replace(".mp3", "");
+
             var songInfo = new Dictionary<string, string>
             {
-                ["SongPreview"] = audioFile
+                ["SongLength"] = Resources.Load<AudioClip>(audioFile).length.ToString()
             };
 
             StreamReader file = new StreamReader(songMap);
             string line, prevLine = "";
             string[] parts;
-            bool readTimingPoints = false, readHitObjects = false;
+            bool readTimingPoints = false, readHitObject = false;
             int maxBpm = 0, startOffset = 0, memSegs = 0;
             while ((line = file.ReadLine()) != null)
             {
-                parts = line.Split(':');
-                //if (metaInfo.Contains(parts[0]))
-                //{
-                //    songInfo[parts[0]] = parts[1];
-                //}
-                if (parts[0] == "#TimingPoints")
+                if (line == "#TimingPoints")
                 {
                     readTimingPoints = true;
                 }
-                else if (parts[0] == "#HitObjects")
+                else if (line == "#HitObjects")
                 {
                     readTimingPoints = false;
-                    readHitObjects = true;
+                    readHitObject = true;
                 }
                 else if (readTimingPoints)
                 {
@@ -62,11 +57,11 @@ public class SongDetailParser : MonoBehaviour
                         memSegs++;
                     }
                 }
-                else if (readHitObjects)
+                else if (readHitObject)
                 {
                     parts = line.Split(',');
                     Int32.TryParse(parts[2], out startOffset);
-                    readHitObjects = false;
+                    readHitObject = false;
                 }
                 prevLine = line;
             }
@@ -74,9 +69,12 @@ public class SongDetailParser : MonoBehaviour
             Int32.TryParse(parts[2], out int endOffset);
 
             songInfo["MaxBpm"] = maxBpm.ToString();
-            int mapLength = endOffset - startOffset;
 
+            int mapLength = endOffset - startOffset;
             songInfo["MapLength"] = ((mapLength / 1000) / 60).ToString() + ":" + ((mapLength % 1000) % 60);
+
+            songInfo["MemorySegments"] = memSegs.ToString();
+
             songs.Add(songInfo);
         }
 
