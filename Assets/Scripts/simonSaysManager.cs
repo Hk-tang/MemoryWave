@@ -24,7 +24,7 @@ public class simonSaysManager : MonoBehaviour
 
     int bleepCount = 3;
 
-    List<int> bleeps;
+    List<int> bleeps = new List<int>();
     public List<int> playerBleeps = new List<int>();
 
     bool inputEnabled = false;

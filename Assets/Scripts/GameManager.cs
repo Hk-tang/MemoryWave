@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
     long startTime;
     int index;
 
+    public GameObject simonSaysController;
     public GameObject noteController;
+    
 
     void loadLevel(string filename)
     {
@@ -87,24 +89,44 @@ public class GameManager : MonoBehaviour
         loadLevel("Assets/Scripts/Alan-Walker-Faded.memw");
         // Start Song
 
-        startTime = startTime = DateTime.Now.Ticks;
+        startTime = 0;
         index = 0;
         //GetComponent<AudioSource>().Play();
 
     }
 	
 	void Update() {
+        if(startTime == 0)
+        {
+            startTime = DateTime.Now.Ticks;
+        }
         while (index < hitObjectsList.Count)
         {
             long offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
             HitObject hitObject = hitObjectsList[index];
-            if (!hitObject.IsNote())
+            
+            if (offsetTime >= hitObject.getOffset())
             {
-                index++;
-            }
-            else if (offsetTime >= hitObject.getOffset())
-            {
-                noteController.GetComponent<NotesController>().spawnNotes(hitObject);
+                if (hitObject.isFlashRed())
+                {
+                    simonSaysController.GetComponent<simonSaysManager>().StoreBleep(0);
+                }
+                if (hitObject.isFlashBlue())
+                {
+                    simonSaysController.GetComponent<simonSaysManager>().StoreBleep(1);
+                }
+                if (hitObject.isFlashYellow())
+                {
+                    simonSaysController.GetComponent<simonSaysManager>().StoreBleep(2);
+                }
+                if (hitObject.isFlashGreen())
+                {
+                    simonSaysController.GetComponent<simonSaysManager>().StoreBleep(3);
+                }
+                if (hitObject.IsNote())
+                {
+                    noteController.GetComponent<NotesController>().spawnNotes(hitObject);
+                } 
                 index++;
             }
             else //if next hit object dont need to be spawned now
