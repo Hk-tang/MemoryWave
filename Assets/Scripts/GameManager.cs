@@ -28,11 +28,18 @@ public class GameManager : MonoBehaviour
     private double noteBaseScore;
     public double baseScore;
 
+    public double prevTime;
+
+    public Text scoreText;
+    public Text hitText;
+
+
     public int numNormalHit;
     public int numGoodHit;
 	
 	public Texture whiteTexture;
 	
+
 
     public static GameManager instance;
 
@@ -120,13 +127,14 @@ public class GameManager : MonoBehaviour
         numGoodHit = 0;
         simSaysBaseScore = 100;
         noteBaseScore = 10;
+        scoreText.text = "Score: 0";
+        prevTime = DateTime.Now.Ticks;
         //GetComponent<AudioSource>().Play();
 
     }
 	
     public void NoteHit(bool goodHit)
     {
-
         Debug.Log("note hit AAYYYYYYYYYYYYYYYYYYYYYY");
         Debug.Log(string.Format("good hit: {0}", goodHit));
         if(goodHit)
@@ -137,27 +145,49 @@ public class GameManager : MonoBehaviour
             numNormalHit++;
         }
         score += baseScore;
+        scoreText.text = string.Format("Score: {0}", score);
+        if (goodHit)
+        {
+            hitText.text = "good hit";
+        } else
+        {
+            hitText.text = "normal hit";
+        }
     }
 
     public void NoteMissed()
     {
         Debug.Log("note missed :(");
+
+        hitText.text = "note missed";
+
         score -= baseScore;
+
     }
 
 
     void Update() {
 
+        if ((DateTime.Now.Ticks - prevTime) / TimeSpan.TicksPerMillisecond > 1000)
+        {
+            prevTime = DateTime.Now.Ticks;
+            hitText.text = "";
+        }
+
+
+
+
         timer += Time.deltaTime;
 
         if(startTime == 0)
+
         {
             startTime = DateTime.Now.Ticks;
         }
 
         //gets latest timing points
         long offsetTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
-        if (timingIndex >= timingPointsList.Count && offsetTime >= timingPointsList[timingIndex].getOffset())
+        if (timingIndex < timingPointsList.Count && offsetTime >= timingPointsList[timingIndex].getOffset())
         {
             if(timingPointsList[timingIndex].getPlaymode() == 0) //note mode
             {
